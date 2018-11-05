@@ -1,37 +1,30 @@
 
 class Bankaccount
-  attr_reader :balance, :statement, :deposit_statement
+  attr_reader :balance, :statement, :statement_headlines
 
+  def initialize
+    @balance = 0
+    @statement_headlines = ["date || credit || debit || balance" ]
+    @statement = []
+    @time = Time.now.strftime("%d/%m/%Y")
+  end
 
+  def deposit(amount)
+    @balance = @balance + amount
+    @statement.push([@time, "||", amount.to_i, "|| ||", @balance.to_i])
+  end
 
-def initialize
-  @balance = 0
-  @beginning_of_statement = ["date || credit || debit || balance" ]
-  @statement = []
-  @overall_statement = []
-end
+  def withdraw(amount)
+    @balance = @balance - amount
+    @statement.push([@time, "|| ||", amount.to_i, "||", @balance.to_i])
+  end
 
-def deposit(amount)
-  @time = Time.now.strftime("%d/%m/%Y")
-  @balance = @balance + amount
-  @statement.push([@time, "||", amount.to_i, "|| ||", @balance.to_i])
+  def print_statement
+    @ordered_statement = @statement.reverse!
+    @ordered_statement.unshift(@statement_headlines)
+    @ordered_statement.each do |statement|
+      print "#{statement.join(" ")}\n"
+    end
+  end
 
-end
-
-
-def withdraw(amount)
-  @balance = @balance - amount
-  @time = Time.now.strftime("%d/%m/%Y")
-  @statement.push([@time, "|| ||", amount.to_i, "||", @balance.to_i])
-end
-
-def print_statement
-  @ordered_statement = @statement.reverse!
-  @ordered_statement.unshift(@beginning_of_statement)
-  @ordered_statement.each do |statement|
-    print "#{statement.join(" ")}\n"
-
-end
-
-end
 end
