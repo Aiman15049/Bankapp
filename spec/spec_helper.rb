@@ -21,6 +21,11 @@ RSpec.configure do |config|
     # This option will default to `true` in RSpec 4. It makes the `description`
     # and `failure_message` of custom matchers include text for helper methods
     # defined using `chain`, e.g.:
+    require 'simplecov'
+    require 'simplecov-console'
+    SimpleCov.formatter = SimpleCov::Formatter::Console
+    SimpleCov.start
+
     #     be_bigger_than(2).and_smaller_than(4).description
     #     # => "be bigger than 2 and smaller than 4"
     # ...rather than:
@@ -53,6 +58,7 @@ RSpec.configure do |config|
   # aliases for `it`, `describe`, and `context` that include `:focus`
   # metadata: `fit`, `fdescribe` and `fcontext`, respectively.
   config.filter_run_when_matching :focus
+
 
   # Allows RSpec to persist some state between runs in order to support
   # the `--only-failures` and `--next-failure` CLI options. We recommend
