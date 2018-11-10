@@ -1,11 +1,7 @@
-source "https://rubygems.org"
-
+source 'https://rubygems.org'
 group :development, :test do
-  gem "rspec"
-
-
+  gem 'rspec'
+  gem 'rubocop'
   gem 'simplecov'
   gem 'simplecov-console'
-
-
 end
